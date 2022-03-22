@@ -1,0 +1,64 @@
+
+The round t refers to the step we're at, i.e. for the first update t=1, for the second t=2,
+and so on. 
+
+The i superscript just refers to some arbitrary component of the parameter vector/matrix
+
+
+python neuralnet.py tiny_train_data.csv tiny_validation_data.csv tiny_train_out.labels tiny_validation_out.labels tiny_metrics_out.txt 2 4 2 0.1
+
+python neuralnet.py small_train_data.csv small_validation_data.csv tiny_train_out.labels tiny_validation_out.labels tiny_metrics_out.txt 1 4 2 0.1
+
+
+python neuralnet_plot.py small_train_data.csv small_validation_data.csv tiny_train_out.labels tiny_validation_out.labels tiny_metrics_out.txt 2 4 2 0.1
+
+
+python neuralnet_plot.py small_train_data.csv small_validation_data.csv tiny_train_out.labels tiny_validation_out.labels tiny_metrics_out.txt 100 50 1 0.01
+
+Namespace(train_input='tiny_train.csv', 
+validation_input='tiny_validation.csv', 
+train_out='tiny_train_out.labels', 
+validation_out='tiny_validation_out.labels', 
+metrics_out='tiny_metrics_out.txt', 
+num_epoch=1, hidden_units=4, init_flag=2, 
+learning_rate=0.1, debug=False)
+
+
+
+Notes:
+- we have to update gradient for each model separately
+- hence when we have one hidden layer and hence two models
+    we need gradient of first one updated and second one updated each time
+Adagrad:
+- s is intermediate value used as constant to divide by learning rate for
+
+
+
+    Xnew = [[1,1,0,1,1,0,1]]
+    Xnew = np.array(Xnew)
+    y = np.array([[0,1,0]])
+
+    alpha = [[1,1,2,0,-1,3,2],
+             [1,2,3,1,0,1,1],
+             [1,1,3,1,2,-1,2],
+             [1,0,1,2,0,0,3]]
+    alpha = np.array(alpha)
+    a = np.dot(alpha, Xnew.T)
+    print("a: ", a)
+    z= sigmoid(a)
+    z = np.insert(z, 0, [1])
+    beta = [[1,1,2,0,1],[1,1,-1,3,2],[1,3,0,-1,1]]
+    beta = np.array(beta)
+    b = np.dot(beta, z)
+    print("alpha: ", alpha)
+    print("beta: ", beta)
+    print("b: ", b)
+    softmaxB = softmax(b)
+    print("z: ", z)
+    print("y_hat: ", softmaxB)
+    y_hat = softmaxB
+
+    print(1-0.2439965)
+
+
+    average cross entropy measures the expected probabilty against actual
