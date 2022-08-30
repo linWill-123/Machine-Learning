@@ -1,0 +1,3 @@
+Liverpool	D
+win	C
+league	C
